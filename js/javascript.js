@@ -32,12 +32,15 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
     button.addEventListener('click', (e) => {
-        if(board.textContent === "0") {
-            board.textContent = button.textContent;
+        if(button.textContent === "AC") {
+            board.textContent = 0;
         } else {
-            board.textContent += button.textContent;
+            if(board.textContent === "0") {
+                board.textContent = button.textContent;
+            } else {
+                board.textContent += button.textContent;
+            }
         }
-    
     })
 });
 
