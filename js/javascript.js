@@ -18,19 +18,19 @@ function operate(a, b, operator) {
     switch (operator) {
         case '+' :
             return add(a, b);
-        case '-' :
+        case '−' :
             return subtract(a, b);
-        case '*' :
+        case '×' :
             return multiply(a, b);
-        case '/' :
+        case '÷' :
             return divide(a, b);
     }
 }
 
 function clear() {
-    operandA = 0;
-    operandB = 0;
-    operator = "";
+    operandA = undefined;
+    operandB = undefined;
+    operator = undefined;
 }
 
 const board = document.querySelector('.cell.result');
@@ -43,44 +43,41 @@ buttons.forEach(button => {
                 board.textContent = 0;
                 clear();
                 break;
-                
+
             case "+":
             case "−":
             case "×":
             case "÷":
-                operandA = +currentNumber;
+                if (operandA && operator) {
+                    operandB = +board.textContent;
+                    result = operate(operandA, operandB, operator);
+                    board.textContent = result;
+                }
+                operandA = +board.textContent;
+                operandB = undefined;
                 operator = button.textContent;
-                board.textContent = button.textContent;
+                boardClear = true;
                 break;
 
             case "=":
-                if (!(operator == "")) {
-                    operandB = +currentNumber;
+                if ((!operandB || !operandA) && boardClear) {
+                    break;
                 }
-                switch(operator) {
-                    case "+":
-                        board.textContent = add(operandA, operandB);
-                        break;
-                    case "−":
-                        board.textContent = subtract(operandA, operandB);
-                        break;
-                    case "×":
-                        board.textContent = multiply(operandA, operandB);
-                        break;
-                    case "÷":
-                        board.textContent = divide(operandA, operandB);
-                        break;
-                }
+
+                if (operator) {
+                    operandB = +board.textContent;
+                    result = operate(operandA, operandB, operator);
+                    board.textContent = result;
+                } 
 
                 clear();
                 break;
 
             default:
-                if (board.textContent === "+"
-                    || board.textContent === "−"
-                    || board.textContent === "×"
-                    || board.textContent === "÷") {
-                    board.textContent = "0";
+                if(boardClear) {
+                    board.textContent = 0;
+                    result = undefined;
+                    boardClear = false;
                 }
 
                 if(board.textContent === "0") {
@@ -88,13 +85,13 @@ buttons.forEach(button => {
                 } else {
                     board.textContent += button.textContent;
                 }
-                currentNumber = board.textContent;
                 break;
         }
     });
 });
 
-let operandA = 0;
-let operandB = 0;
+let operandA;
+let operandB;
 let operator;
-let currentNumber = 0;
+let result;
+let boardClear = false;
