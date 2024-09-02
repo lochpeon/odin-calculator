@@ -32,18 +32,30 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
     button.addEventListener('click', (e) => {
-        if(button.textContent === "AC") {
-            board.textContent = 0;
-        } else {
-            if(board.textContent === "0") {
-                board.textContent = button.textContent;
-            } else {
-                board.textContent += button.textContent;
-            }
+        switch(button.textContent) {
+            case "AC":
+                board.textContent = 0;
+                break;
+            case "+":
+            case "−":
+            case "×":
+            case "÷":
+                break;
+            case "=":
+                break;
+            default:
+                if(board.textContent === "0") {
+                    board.textContent = button.textContent;
+                } else {
+                    board.textContent += button.textContent;
+                }
+                currentNumber = board.textContent;
+                break;
         }
-    })
+    });
 });
 
 let operandA = 0;
 let operandB = 0;
 let operator;
+let currentNumber = 0;
