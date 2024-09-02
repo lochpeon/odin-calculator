@@ -17,13 +17,13 @@ function divide(a, b) {
 function operate(a, b, operator) {
     switch (operator) {
         case '+' :
-            return add(a, b);
+            return Math.round(add(a, b) * 100) / 100;
         case '−' :
-            return subtract(a, b);
+            return Math.round(subtract(a, b) * 100) / 100;
         case '×' :
-            return multiply(a, b);
+            return Math.round(multiply(a, b) * 100) / 100;
         case '÷' :
-            return divide(a, b);
+            return Math.round(divide(a, b) * 100) / 100;
     }
 }
 
@@ -48,15 +48,21 @@ buttons.forEach(button => {
             case "−":
             case "×":
             case "÷":
-                if (operandA && operator) {
+                if(boardClear) {
+                    board.textContent = "0";
+                    clear();
+                    break;
+                    
+                } else if (operandA && operator) {
                     operandB = +board.textContent;
                     result = operate(operandA, operandB, operator);
                     board.textContent = result;
                 }
                 operandA = +board.textContent;
                 operandB = undefined;
-                operator = button.textContent;
                 boardClear = true;
+
+                operator = button.textContent;
                 break;
 
             case "=":
