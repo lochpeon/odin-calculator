@@ -27,6 +27,15 @@ function operate(a, b, operator) {
     }
 }
 
+function getResult() {
+    operandB = +board.textContent;
+    result = operate(operandA, operandB, operator);
+    if (result == Infinity) {
+        result = "nice try";
+    }
+    board.textContent = result;
+}
+
 function clear() {
     operandA = undefined;
     operandB = undefined;
@@ -52,11 +61,8 @@ buttons.forEach(button => {
                     board.textContent = "0";
                     clear();
                     break;
-                    
                 } else if (operandA && operator) {
-                    operandB = +board.textContent;
-                    result = operate(operandA, operandB, operator);
-                    board.textContent = result;
+                    getResult();
                 }
                 operandA = +board.textContent;
                 operandB = undefined;
@@ -71,9 +77,7 @@ buttons.forEach(button => {
                 }
 
                 if (operator) {
-                    operandB = +board.textContent;
-                    result = operate(operandA, operandB, operator);
-                    board.textContent = result;
+                    getResult();
                 } 
 
                 clear();
