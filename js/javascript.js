@@ -71,6 +71,16 @@ buttons.forEach(button => {
                 operator = button.textContent;
                 break;
 
+            case "+/−":
+            case "%":
+                break;
+
+            case ".":
+                if(!board.textContent.includes(".")) {
+                    board.textContent += button.textContent;
+                }
+                break;
+
             case "=":
                 if ((!operandB || !operandA) && boardClear) {
                     break;

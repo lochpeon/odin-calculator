@@ -61,6 +61,11 @@ button.cell.digit {
     background-color: white;
 }
 
+button.cell.zero {
+    flex: 48%;
+    aspect-ratio: unset;
+}
+
 button.cell.operand {
     background-color: yellow;
 }
