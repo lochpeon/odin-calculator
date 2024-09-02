@@ -27,6 +27,20 @@ function operate(a, b, operator) {
     }
 }
 
+const board = document.querySelector('.cell.result');
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        if(board.textContent === "0") {
+            board.textContent = button.textContent;
+        } else {
+            board.textContent += button.textContent;
+        }
+    
+    })
+});
+
 let operandA = 0;
 let operandB = 0;
 let operator;
