@@ -31,7 +31,7 @@ function getResult() {
     operandB = +board.textContent;
     result = operate(operandA, operandB, operator);
     if (result == Infinity) {
-        result = "nice try";
+        result = "nope";
     }
     board.textContent = result;
 }
