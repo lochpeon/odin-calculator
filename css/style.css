@@ -53,6 +53,10 @@ button.cell {
     font-weight: bold;
 }
 
+button.cell:hover {
+    cursor: pointer;
+}
+
 button.cell.digit {
     background-color: white;
 }
