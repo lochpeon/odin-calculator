@@ -79,8 +79,19 @@ buttons.forEach(button => {
                 break;
 
             case "+/−":
+                if(boardClear) {
+                    board.textContent = "0";
+                    break;
+                } 
+                board.textContent = -board.textContent;
                 break;
+
             case "%":
+                if(boardClear) {
+                    board.textContent = "0";
+                    break;
+                } 
+                board.textContent = (board.textContent / 100);
                 break;
 
             case ".":
