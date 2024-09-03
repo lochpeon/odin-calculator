@@ -33,6 +33,10 @@ function getResult() {
     if (result == Infinity) {
         result = "nope";
     }
+    
+    if (result.toString().length > 15) {
+        result = result.toString().substring(0, 15);
+    }
     board.textContent = result;
 }
 
@@ -47,6 +51,9 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
     button.addEventListener('click', (e) => {
+        if(board.textContent == "nope") {
+            board.textContent = 0;
+        }
         switch(button.textContent) {
             case "AC":
                 board.textContent = 0;
@@ -72,6 +79,7 @@ buttons.forEach(button => {
                 break;
 
             case "+/−":
+                break;
             case "%":
                 break;
 
@@ -98,6 +106,10 @@ buttons.forEach(button => {
                     board.textContent = 0;
                     result = undefined;
                     boardClear = false;
+                }
+
+                if (board.textContent.length > 15) {
+                    break;
                 }
 
                 if(board.textContent === "0") {

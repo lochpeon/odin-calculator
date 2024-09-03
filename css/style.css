@@ -14,6 +14,7 @@ body {
 
 main.calcBoard {
     max-height: 90vh;
+    height: 600px;
     border: 2px solid black;
     border-radius: 0.5rem;
     margin: 1rem;
